@@ -48,7 +48,7 @@ RSpec.describe Visitor do
         end
     end
 
-    describe '#tall_enough?' do
+    describe '#tall_enough?(height)' do
         it 'can tell if a visitor is tall enough for a ride' do
             visitor1 = Visitor.new('Bruce', 54, '$10')
             visitor2 = Visitor.new('Tucker', 36, '$5')
