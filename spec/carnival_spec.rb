@@ -156,14 +156,20 @@ RSpec.describe Carnival do
 
         it 'can count how many unique visitors have entered the carnival' do
             
-            expect(carnival.visitor_count).to eq(3)
-            
+            expect(@carnival.visitor_count).to eq(3)
+
+        end
+
+        it 'can return the unique visitors that have entered the park' do
+
+            expect(@carnival.visitors).to eq([@visitor1, @visitor2, @visitor3])
+
         end
 
 
 
         it 'can return a summary of the carnival' do
-            expect(carnival.summary).to eq({
+            expect(@carnival.summary).to eq({
                 visitor_count: 3, 
                 revenue_earned: 21, 
                 visitors: [
