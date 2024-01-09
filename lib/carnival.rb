@@ -25,4 +25,23 @@ class Carnival
             ride.total_revenue
         end
     end
+
+    def visitors
+        visitors = []
+        @rides.each do |ride|
+            ride.rider_log.each do |visitor, _|
+                visitors << visitor
+            end 
+        end
+        visitors.uniq
+    end
+
+    def visitor_count
+        visitors.count
+    end
+
+    def summary
+    end
+
+
 end
