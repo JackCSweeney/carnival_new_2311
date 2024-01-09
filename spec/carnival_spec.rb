@@ -155,7 +155,7 @@ RSpec.describe Carnival do
         end
     end
 
-    describe '#summary' do
+    describe '#summary, #unique_visitors, #visitor_count, #favorit_ride(visitor)' do
         before(:each) do
             @carnival = Carnival.new(4)
 
