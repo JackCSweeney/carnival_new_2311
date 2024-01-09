@@ -13,4 +13,10 @@ class Ride
         @excitement = info[:excitement]
         @rider_log = {}
     end
+
+    def board_rider(rider)
+        rider.pay_fee(@admission_fee)
+        @rider_log[rider] == nil ? @rider_log[rider] = 1 : @rider_log[rider] += 1
+    end
+
 end
