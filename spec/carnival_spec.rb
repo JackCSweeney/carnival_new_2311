@@ -65,7 +65,6 @@ RSpec.describe Carnival do
             @ride1.board_rider(@visitor2)
             @ride2.board_rider(@visitor1)
             @ride2.board_rider(@visitor2)
-            @ride2.board_rider(@visitor3)
             @ride3.board_rider(@visitor3)
             @ride3.board_rider(@visitor3)
             @ride3.board_rider(@visitor3)
@@ -106,20 +105,19 @@ RSpec.describe Carnival do
             @visitor2.add_preference(:thrilling)
             @visitor3.add_preference(:thrilling)
 
-            @ride1.board_rider(@visitor1)
-            @ride1.board_rider(@visitor2)
-            @ride2.board_rider(@visitor1)
-            @ride2.board_rider(@visitor2)
-            @ride2.board_rider(@visitor3)
-            @ride3.board_rider(@visitor3)
-            @ride3.board_rider(@visitor3)
-            @ride3.board_rider(@visitor3)
-            @ride3.board_rider(@visitor3)
+            @ride1.board_rider(@visitor1) 
+            @ride1.board_rider(@visitor2) 
+            @ride2.board_rider(@visitor1) 
+            @ride2.board_rider(@visitor2) 
+            @ride3.board_rider(@visitor3) 
+            @ride3.board_rider(@visitor3) 
+            @ride3.board_rider(@visitor3) 
+            @ride3.board_rider(@visitor3) 
         end
 
         it 'can tell you the the total revenue for all rides in the carnival combined' do
 
-            expect(@carnival.total_revenue).to eq(25)
+            expect(@carnival.total_revenue).to eq(20)
             
         end
     end
