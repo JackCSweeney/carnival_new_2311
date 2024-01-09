@@ -40,6 +40,20 @@ class Carnival
         visitors.count
     end
 
+    def favorite_ride(visitor)
+        rides_ridden = []
+        @rides.each do |ride|
+            ride.rider_log.each do |rider, times|
+                rides_ridden << ride if visitor == rider
+            end
+            rides_ridden.sort_by do |ride|
+                ride.rider_log[visitor]
+            end
+        end
+        rides_ridden.first
+    end
+
+
     def summary
     end
 
