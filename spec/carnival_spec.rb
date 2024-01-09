@@ -214,4 +214,32 @@ RSpec.describe Carnival do
         end
     end
     
+    describe '#self.total_revenues' do
+        it 'can tell you the total revenue of multiple carnivals' do
+            carnival1 = Carnival.new(4)
+            carnival2 = Carnival.new(4)
+            carnival3 = Carnival.new(4)
+
+            ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+            ride2 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+            ride3 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+
+            visitor1 = Visitor.new('Bruce', 54, '$10')
+
+            carnival1.add_ride(ride1)
+            carnival2.add_ride(ride2)
+            carnival3.add_ride(ride3)
+
+            visitor1.add_preference(:gentle)
+
+            ride1.board_rider(visitor1)
+            ride2.board_rider(visitor1)
+            ride2.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+
+            exect(Carnival.total_revenues).to eq(6)
+        end
+    end
 end
