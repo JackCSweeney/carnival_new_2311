@@ -166,7 +166,13 @@ RSpec.describe Carnival do
 
         end
 
+        it 'can tell you a visitors favorite ride' do
 
+            expect(@carnival.favorite_ride(@visitor1)).to eq(@ride1)
+            expect(@carnival.favorite_ride(@visitor2)).to eq(@ride1)
+            expect(@carnival.favorite_ride(@visitor3)).to eq(@ride3)
+            
+        end
 
         it 'can return a summary of the carnival' do
             expect(@carnival.summary).to eq({
