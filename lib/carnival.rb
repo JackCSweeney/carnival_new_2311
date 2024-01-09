@@ -26,7 +26,7 @@ class Carnival
         end
     end
 
-    def visitors
+    def unique_visitors
         visitors = []
         @rides.each do |ride|
             ride.rider_log.each do |visitor, _|
@@ -37,7 +37,7 @@ class Carnival
     end
 
     def visitor_count
-        visitors.count
+        unique_visitors.count
     end
 
     def favorite_ride(visitor)
@@ -53,9 +53,27 @@ class Carnival
         rides_ridden.first
     end
 
-
     def summary
+        summary = {}
+        visitors = unique_visitors.map do |visitor|
+            {
+                visitor: visitor,
+                favorite_ride: favorite_ride(visitor),
+                total_money_spent: visitor.money_spent
+                
+            }
+        end
+        rides = @rides.map do |ride|
+            {
+                ride: ride,
+                riders: ride.rider_log.keys,
+                total_revenue: ride.total_revenue
+            }
+        end
+        summary[:visitor_count] = visitor_count
+        summary[:revenue_earned] = total_revenue
+        summary[:visitors] = visitors
+        summary[:rides] = rides
+        summary   
     end
-
-
 end

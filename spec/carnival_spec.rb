@@ -162,7 +162,7 @@ RSpec.describe Carnival do
 
         it 'can return the unique visitors that have entered the park' do
 
-            expect(@carnival.visitors).to eq([@visitor1, @visitor2, @visitor3])
+            expect(@carnival.unique_visitors).to eq([@visitor1, @visitor2, @visitor3])
 
         end
 
@@ -171,7 +171,7 @@ RSpec.describe Carnival do
             expect(@carnival.favorite_ride(@visitor1)).to eq(@ride1)
             expect(@carnival.favorite_ride(@visitor2)).to eq(@ride1)
             expect(@carnival.favorite_ride(@visitor3)).to eq(@ride3)
-            
+
         end
 
         it 'can return a summary of the carnival' do
@@ -211,8 +211,7 @@ RSpec.describe Carnival do
                     total_revenue: 8
                   }]
                 })
-            end
         end
-
-
+    end
+    
 end

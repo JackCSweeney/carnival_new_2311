@@ -71,7 +71,7 @@ RSpec.describe Visitor do
         end
     end
 
-    descrbie '#money_spent' do
+    describe '#money_spent' do
         it 'keeps track of money spent by the visitor' do
             visitor1 = Visitor.new('Bruce', 54, '$10')
 
