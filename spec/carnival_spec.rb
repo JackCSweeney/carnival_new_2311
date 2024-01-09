@@ -3,6 +3,39 @@ require './lib/visitor'
 require './lib/ride'
 require './lib/carnival'
 
+# I had to move this test up to the top becuase I couldn't figure out how to get it to not include all of the previous instances of carnivals when getting the total revenues of all carnivals
+
+RSpec.describe Carnival do
+    describe '#self.total_revenues' do
+        it 'can tell you the total revenue of multiple carnivals' do
+            carnival1 = Carnival.new(4)
+            carnival2 = Carnival.new(4)
+            carnival3 = Carnival.new(4)
+
+            ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+            ride2 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+            ride3 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+
+            visitor1 = Visitor.new('Bruce', 54, '$10')
+
+            carnival1.add_ride(ride1)
+            carnival2.add_ride(ride2)
+            carnival3.add_ride(ride3)
+
+            visitor1.add_preference(:gentle)
+
+            ride1.board_rider(visitor1)
+            ride2.board_rider(visitor1)
+            ride2.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+            ride3.board_rider(visitor1)
+
+            expect(Carnival.total_revenues).to eq(6)
+        end
+    end
+end
+
 RSpec.describe Carnival do
     describe '#initialize' do
         it 'exists' do
@@ -211,35 +244,6 @@ RSpec.describe Carnival do
                     total_revenue: 8
                   }]
                 })
-        end
-    end
-    
-    describe '#self.total_revenues' do
-        it 'can tell you the total revenue of multiple carnivals' do
-            carnival1 = Carnival.new(4)
-            carnival2 = Carnival.new(4)
-            carnival3 = Carnival.new(4)
-
-            ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
-            ride2 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
-            ride3 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
-
-            visitor1 = Visitor.new('Bruce', 54, '$10')
-
-            carnival1.add_ride(ride1)
-            carnival2.add_ride(ride2)
-            carnival3.add_ride(ride3)
-
-            visitor1.add_preference(:gentle)
-
-            ride1.board_rider(visitor1)
-            ride2.board_rider(visitor1)
-            ride2.board_rider(visitor1)
-            ride3.board_rider(visitor1)
-            ride3.board_rider(visitor1)
-            ride3.board_rider(visitor1)
-
-            exect(Carnival.total_revenues).to eq(6)
         end
     end
 end

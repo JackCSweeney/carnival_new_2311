@@ -3,9 +3,12 @@ class Carnival
     attr_reader :duration,
                 :rides
 
+    @@carnivals = []
+
     def initialize(duration)
         @duration = duration
         @rides = []
+        @@carnivals << self
     end
 
     def add_ride(ride)
@@ -75,5 +78,9 @@ class Carnival
         summary[:visitors] = visitors
         summary[:rides] = rides
         summary   
+    end
+
+    def self.total_revenues
+        @@carnivals.sum {|carnival| carnival.total_revenue}
     end
 end
