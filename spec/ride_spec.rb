@@ -70,4 +70,21 @@ RSpec.describe Ride do
             expect(visitor2.spending_money).to eq(4)
         end
     end
+
+    describe '#total_revenue' do
+        it 'can calculate the total revenue for a ride' do
+            ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+            visitor1 = Visitor.new('Bruce', 54, '$10')
+            visitor2 = Visitor.new('Tucker', 36, '$5')
+
+            expect(ride1.total_revenue).to eq(0)
+
+            ride1.board_rider(visitor1)
+            ride1.board_rider(visitor1)
+            ride1.board_rider(visitor2)
+
+            expect(ride1.total_revenue).to eq(3)
+        end
+    end
+
 end
