@@ -15,8 +15,14 @@ class Ride
     end
 
     def board_rider(rider)
-        rider.pay_fee(@admission_fee)
-        @rider_log[rider] == nil ? @rider_log[rider] = 1 : @rider_log[rider] += 1
+        if rider.tall_enough?(@min_height) && rider.preferences.include?(@excitement)
+            rider.pay_fee(@admission_fee)
+            @rider_log[rider] == nil ? @rider_log[rider] = 1 : @rider_log[rider] += 1
+        end
+    end
+
+    def total_revenue
+        @rider_log.empty? ? 0 : @rider_log.values.sum * @admission_fee
     end
 
 end
